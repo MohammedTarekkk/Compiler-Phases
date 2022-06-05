@@ -4,7 +4,7 @@ tokenizer = Tokenize('''
 double *Y^##a = 2.2
 double a = 2.2
 int b = 3
-string c = "Hello"
+string c = ""Hello"
 
 ''')
 tokens =  tokenizer.tokenize()

@@ -1,7 +1,7 @@
 function $element(id) {
     return document.getElementById(id);
 }
-
+// insted of E = ' '
 var EPSILON = '\'\'';
 
 var alphabet;
@@ -111,7 +111,7 @@ function makeRuleTable() {
 function emptyIfUndefined(string) {
     return string == undefined ? '' : string;
 }
-
+// check for epsilon in the first set of symbols LHS
 function collectFirsts() {
     firsts = new Object();
 
@@ -151,7 +151,8 @@ function collectFirsts() {
  * Array of symbols
  * @param nonterminalFirsts
  * Array of symbols
- * Input-output
+ * Input-output 
+ * collect primary first of the development symbols for ex terminal
  * @return true If nonterminalFirsts has been modified
  */
 function collectFirsts4(development, nonterminalFirsts) {
@@ -187,7 +188,7 @@ function collectFirsts4(development, nonterminalFirsts) {
 
     return result;
 }
-
+//collect first of development symbols from the follow set on the nonterminal
 function collectFirsts3(sequence) {
     var result = [];
     var epsilonInSymbolFirsts = true;
@@ -210,7 +211,7 @@ function collectFirsts3(sequence) {
             addUnique(first, result);
         }
 
-        epsilonInSymbolFirsts |= firsts[symbol] == undefined || firsts[symbol].length == 0;
+        epsilonInSymbolFirsts |= firsts[symbol] == undefined || firsts[symbol].length == 0;8
 
         if (!epsilonInSymbolFirsts) {
             break;
@@ -289,11 +290,12 @@ function collectFollows() {
 
 function collectAlphabetAndNonterminalsAndTerminals() {
     for (var i in rules) {
+        //afsel el left men el right 
         var rule = rules[i].split('->');
         if (rule.length != 2) {
             continue;
         }
-
+        //trim sheel spaces 
         var nonterminal = rule[0].trim();
         var development = trimElements(rule[1].trim().split(' '));
 

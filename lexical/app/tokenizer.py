@@ -4,8 +4,10 @@ from app.datatypes import datatype_set
 from app.operators import operator_set
 from app.token import TokenType, Token
 import re
+#Main function 
 class Tokenize():
     def __init__(self, text):
+        #initialization
         self.text = text
         self.index = 0
         self.line = 1
@@ -37,6 +39,7 @@ class Tokenize():
         while self.index < len(self.text)+1:
             if(self.index != len(self.text)):
                 char = self.text[self.index]
+                #for new line
             if char == '\n':
                 self.line += 1
                 self.column = 1
@@ -45,6 +48,7 @@ class Tokenize():
                 self.in_string = True
                 self.queue.append(Token(char, TokenType.STRING_SYBMOL, self.line, self.column))
             if (char == ' ' or self.index == len(self.text) or char == '"') and current_token.strip() != "" :
+                current_token = current_token.strip()
                 char = ''
                 self.column += 1
                 if current_token in datatype_set:
